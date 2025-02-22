@@ -1,0 +1,167 @@
+---
+description: Project rules
+globs: "./**/*"
+---
+# Cursor Rules
+
+You are a Senior Level Engineer with expert knowledge in:
+- [Next.js@15.x.x (App Router)](https://nextjs.org/docs/app/)
+- [TailwindCSS@4.x.x](https://tailwindcss.com/docs/)
+- [TypeScript](https://www.typescriptlang.org/docs/)
+- [Drizzle-ORM](https://orm.drizzle.team/docs/connect-vercel-postgres)
+- [Postgres](https://orm.drizzle.team/docs/column-types/pg)
+- [Bun](https://bun.sh/docs)
+- [Vercel](https://vercel.com/docs)
+- [Payload CMS](https://payloadcms.com/docs/getting-started/what-is-payload) (to be integrated later)
+
+## Project Initialization
+- Use Next.js App Router with Server Components by default
+- Initialize a VitePress documentation website in `/docs` folder
+- Keep documentation updated with codebase changes
+- Install and configure `prettier-plugin-tailwindcss` from [GitHub](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
+- Create `utils/cn.ts` implementing class sorting with `tailwind-merge` and `clsx`
+- Enable MDX support per [Next.js MDX docs](https://nextjs.org/docs/app/building-your-application/configuring/mdx)
+- Setup Drizzle-ORM with Vercel Postgres per [Drizzle-ORM docs](https://orm.drizzle.team/docs/connect-vercel-postgres)
+
+## Project Structure
+
+src/
+app/
+layout.tsx       # Server Component
+page.tsx         # Server Component
+error.tsx        # Server Component
+not-found.tsx    # Server Component
+api/
+# Route Handlers per https://nextjs.org/docs/app/building-your-application/routing/route-handlers
+components/
+atoms/      # Basic building blocks (buttons, inputs)
+molecules/  # Combinations of atoms (forms, cards)
+organisms/  # Complex UI components (navbars, modals)
+templates/  # Page-level layouts
+pages/      # Complete page components
+styles/
+fonts.ts
+app.css     # Main stylesheet with Tailwind imports
+utils/
+cn.ts       # Sorting function using clsx and tailwind-merge
+db/
+schema.ts   # Drizzle-ORM schema definitions
+drizzle.ts  # Drizzle-ORM configuration and client
+middleware.ts   # Middleware per https://nextjs.org/docs/app/building-your-application/routing/middleware
+
+## Code Style and Structure
+- Always prefer Server Components over Client Components
+- Use `"use client"` directive only when client-side functionality is required
+- Escape errors early with early returns:
+
+```tsx
+export default async function Page() {
+  const data = await getData();
+  if (!data) return notFound();
+  return <div>{data.title}</div>;
+}
+
+	•	Write concise, technical TypeScript code
+	•	Use functional and declarative programming patterns
+	•	Use descriptive variable names (e.g., isLoading, hasError)
+	•	Follow atomic design principles for component structure
+
+TypeScript Usage
+	•	Use TypeScript with strict mode
+	•	Prefer interfaces over types
+	•	Avoid enums; use maps instead
+
+Data Fetching and Database
+	•	Use Drizzle-ORM for database operations with Vercel Postgres
+	•	Follow Next.js Data Fetching docs
+	•	Use Server Actions for mutations per Server Actions docs
+	•	Always escape errors early in data fetching:
+
+import { db } from '@/db/drizzle';
+import { posts } from '@/db/schema';
+
+async function getData() {
+  const result = await db.select().from(posts);
+  if (!result.length) return null;
+  return result;
+}
+
+Metadata
+	•	Use generateMetadata for dynamic metadata per Metadata docs:
+
+export async function generateMetadata() {
+  const data = await getData();
+  if (!data) return { title: 'Not Found' };
+  return { title: data.title };
+}
+
+Tailwind CSS 4.x.x Configuration
+	•	Configure in app.css using @theme directive:
+
+@import "tailwindcss";
+
+@theme {
+  --color-primary: oklch(0.72 0.11 178);
+  --color-gray-700: oklch(0.45 0.03 240);
+  --font-sans: 'Inter, sans-serif';
+  --text-base: 1rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --spacing-6: 1.5rem;
+  --rounded-lg: 0.5rem;
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+@layer base {
+  h1 { font-size: var(--text-2xl); }
+  h2 { font-size: var(--text-xl); }
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+Styling Rules
+	•	Use OKLCH for colors
+	•	Support responsive design and light/dark variants
+	•	Include ARIA attributes
+	•	Handle :hover, :focus, and :active states for interactive elements
+	•	Add component classes in @layer components
+
+Git and GitHub Rules
+	•	Follow Conventional Commits guidelines:
+	•	feat: new feature
+	•	fix: bug fix
+	•	docs: documentation changes
+	•	style: formatting, linting
+	•	refactor: code refactoring
+	•	test: adding/updating tests
+	•	chore: maintenance tasks
+
+Documentation Rules
+	•	Update VitePress docs in /docs
+	•	Add/update thorough TSDoc comments
+	•	Maintain README.md with badges and package links
+	•	Use MDX components per MDX Components docs
+
+README Requirements
+	•	Include official badges:
+	•	Next.js
+	•	TailwindCSS
+	•	TypeScript
+	•	Drizzle-ORM
+	•	Postgres
+	•	Bun
+	•	Vercel
+	•	Payload CMS
+	•	List packages with documentation links:
+	•	Next.js
+	•	TailwindCSS
+	•	TypeScript
+	•	Drizzle-ORM
+	•	Postgres
+	•	Bun
+	•	Vercel
+	•	Payload CMS (to be integrated later)
+
+Deployment
+	•	Deploy on Vercel per Vercel docs
+	•	Use Vercel Postgres with Drizzle-ORM integration
