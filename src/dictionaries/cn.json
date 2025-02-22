@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "title": "YellowDog Next 模板",
+    "description": "一个现代化的 Next.js 模板，包含 TypeScript、TailwindCSS 和最佳实践"
+  },
+  "navigation": {
+    "home": "首页",
+    "guide": "指南",
+    "utils": "工具",
+    "components": "组件",
+    "docs": "文档"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "save": "保存",
+    "cancel": "取消",
+    "delete": "删除",
+    "edit": "编辑",
+    "create": "创建",
+    "submit": "提交",
+    "back": "返回",
+    "next": "下一步"
+  },
+  "errors": {
+    "general": "发生错误",
+    "notFound": "页面未找到",
+    "unauthorized": "未授权访问",
+    "validation": "验证错误",
+    "required": "此字段为必填项"
+  },
+  "components": {
+    "button": {
+      "primary": "主要",
+      "secondary": "次要",
+      "danger": "危险",
+      "success": "成功"
+    },
+    "form": {
+      "required": "必填",
+      "optional": "可选",
+      "submit": "提交",
+      "reset": "重置"
+    },
+    "modal": {
+      "close": "关闭",
+      "confirm": "确认",
+      "cancel": "取消"
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "欢迎使用 YellowDog",
+      "description": "开始您的 Next.js 项目",
+      "getStarted": "开始使用"
+    },
+    "guide": {
+      "title": "指南",
+      "quickStart": "快速开始",
+      "projectStructure": "项目结构"
+    },
+    "utils": {
+      "title": "工具",
+      "classNames": "类名工具 (cn)",
+      "logger": "日志工具"
+    }
+  }
+}

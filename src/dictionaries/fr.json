@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "title": "YellowDog Next Template",
+    "description": "Un modèle Next.js moderne avec TypeScript, TailwindCSS et les meilleures pratiques"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "guide": "Guide",
+    "utils": "Utilitaires",
+    "components": "Composants",
+    "docs": "Documentation"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "submit": "Soumettre",
+    "back": "Retour",
+    "next": "Suivant"
+  },
+  "errors": {
+    "general": "Une erreur est survenue",
+    "notFound": "Page non trouvée",
+    "unauthorized": "Accès non autorisé",
+    "validation": "Erreur de validation",
+    "required": "Ce champ est obligatoire"
+  },
+  "components": {
+    "button": {
+      "primary": "Principal",
+      "secondary": "Secondaire",
+      "danger": "Danger",
+      "success": "Succès"
+    },
+    "form": {
+      "required": "Obligatoire",
+      "optional": "Optionnel",
+      "submit": "Soumettre",
+      "reset": "Réinitialiser"
+    },
+    "modal": {
+      "close": "Fermer",
+      "confirm": "Confirmer",
+      "cancel": "Annuler"
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Bienvenue sur YellowDog",
+      "description": "Commencez avec votre projet Next.js",
+      "getStarted": "Commencer"
+    },
+    "guide": {
+      "title": "Guide",
+      "quickStart": "Démarrage Rapide",
+      "projectStructure": "Structure du Projet"
+    },
+    "utils": {
+      "title": "Utilitaires",
+      "classNames": "Noms de Classes (cn)",
+      "logger": "Logger"
+    }
+  }
+}

@@ -18,10 +18,13 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "prettier.config.mjs"],
+  "typeRoots": ["./global.d.ts"],
+  "types": ["next-intl", "./global.d.ts", "next"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "prettier.config.mjs", "global.d.ts"],
   "exclude": ["node_modules"]
 }
