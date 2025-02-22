@@ -17,6 +17,7 @@
   "dependencies": {
     "@eslint/css": "^0.4.0",
     "@eslint/markdown": "^6.2.2",
+    "@tailwindcss/postcss": "^4.0.8",
     "@types/eslint-config-prettier": "^6.11.3",
     "next": "15.1.7",
     "react": "^19.0.0",
