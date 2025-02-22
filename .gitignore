@@ -1,13 +1,63 @@
+# Dependencies
 /node_modules
-/dist
-/build
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# Testing
 /coverage
-/logs
-/temp
-.env 
-.env.local
+
+# Next.js
+/.next/
+/out/
+/build
+/dist
+
+# Production
+*.tsbuildinfo
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Local env files
+.env*.local
+.env
 .env.development
-.env.production
 .env.test
-.env.test.local
-.env.test.local
+.env.production
+
+# Vercel
+.vercel
+
+# IDE and Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+*.pem
+
+# Cache and Temporary files
+.cache/
+/temp
+/tmp
+*.log
+logs/
+
+# PWA files
+**/public/sw.js
+**/public/workbox-*.js
+**/public/worker-*.js
+**/public/sw.js.map
+**/public/workbox-*.js.map
+**/public/worker-*.js.map
+
+# Bun
+# bun.lockb // bun.lockb is not needed to be ignored 
+
+# Misc
+.DS_Store
+*.pem
