@@ -1,0 +1,144 @@
+---
+description: Based on the Payload CMS Postgres documentation, here's a comprehensive list of best practices for working with Postgres in Payload CMS
+globs: src/payloa.confg,collections/
+alwaysApply: false
+---
+
+## DO's ✅
+
+1. **Use Environment Variables for Connection Strings**
+```typescript
+db: postgresAdapter({
+  pool: {
+    connectionString: process.env.DATABASE_URI,
+  },
+})
+```
+
+2. **Enable Development Mode Push for Prototyping**
+- Let Drizzle automatically push schema changes during development
+- This saves time during initial development phases
+```typescript
+db: postgresAdapter({
+  pool: {
+    connectionString: process.env.DATABASE_URI,
+  },
+  // push is enabled by default in development
+})
+```
+
+3. **Use Migration Workflows for Production**
+- Create and maintain proper database migrations for production environments
+- Keep track of all schema changes
+- Test migrations before applying to production
+
+4. **Customize Table Names to Avoid Conflicts**
+```typescript
+{
+  slug: 'users',
+  dbName: 'payload_users', // Custom table name to avoid conflicts
+}
+```
+
+5. **Use Schema Hooks for Custom Requirements**
+```typescript
+db: postgresAdapter({
+  beforeSchemaInit: [
+    ({ schema, adapter }) => {
+      // Add custom tables or modifications
+      return {
+        ...schema,
+        tables: {
+          ...schema.tables,
+          customTable: // custom table definition
+        },
+      }
+    },
+  ],
+})
+```
+
+6. **Generate Database Schema Types**
+```bash
+npx payload generate:db-schema
+```
+
+7. **Use Transactions for Critical Operations**
+```typescript
+db: postgresAdapter({
+  transactionOptions: {
+    // Configure transaction settings
+    isolationLevel: 'serializable'
+  }
+})
+```
+
+## DON'Ts ❌
+
+1. **Don't Mix Push and Migrations**
+- Avoid using both push and manual migrations simultaneously
+- Choose one approach and stick to it
+
+2. **Don't Ignore Schema Changes**
+```typescript
+// Don't disable push without having a migration strategy
+db: postgresAdapter({
+  push: false, // Only disable if you're using migrations
+})
+```
+
+3. **Don't Use Hard-Coded Connection Strings**
+```typescript
+// Don't do this
+db: postgresAdapter({
+  pool: {
+    connectionString: 'postgresql://user:password@localhost:5432/db',
+  },
+})
+```
+
+4. **Don't Skip Type Generation**
+- Always generate types for type safety
+- Don't work with raw untyped queries when possible
+
+5. **Don't Ignore Database Indexes**
+- Use appropriate indexes for frequently queried fields
+```typescript
+afterSchemaInit: [
+  ({ schema, extendTable }) => {
+    extendTable({
+      table: schema.tables.posts,
+      extraConfig: (table) => ({
+        titleIndex: index('title_idx').on(table.title),
+      }),
+    })
+  },
+]
+```
+
+## Best Practices for Local Development
+
+1. **Use Local Database for Development**
+```typescript
+// For Vercel Postgres Adapter
+db: vercelPostgresAdapter({
+  pool: {
+    connectionString: process.env.DATABASE_URL // Point to local database
+  },
+})
+```
+
+2. **Maintain Separate Environments**
+- Use different databases for development, staging, and production
+- Use environment variables to manage connections
+
+3. **Regular Schema Generation**
+```bash
+# Generate schema types regularly when making changes
+bunx payload generate:db-schema
+```
+
+4. **Backup Strategy**
+- Implement regular backup procedures
+- Test database restoration processes
+ 
