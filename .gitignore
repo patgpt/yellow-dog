@@ -11,3 +11,10 @@ public/media/
 
 public/robots.txt
 public/sitemap*.xml
+.env.*
+.env.local
+.env.development.local
+.env.production
+.env.test
+.env.test.local
+.env.test.local
