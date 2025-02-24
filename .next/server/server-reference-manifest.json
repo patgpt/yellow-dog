@@ -1,0 +1,28 @@
+{
+  "node": {
+    "40e90876c469dc0cf244776714e0d9bb0cfce22672": {
+      "workers": {
+        "app/(payload)/admin/[[...segments]]/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fwavefunction%2Fyellowdog%2Fsrc%2Fapp%2F(payload)%2Flayout.tsx%22%2C%5B%5B%2240e90876c469dc0cf244776714e0d9bb0cfce22672%22%2C%22%24%24RSC_SERVER_ACTION_0%22%5D%5D%5D%2C%5B%22%2FUsers%2Fwavefunction%2Fyellowdog%2Fnode_modules%2F%40payloadcms%2Fnext%2Fdist%2Flayouts%2FRoot%2Findex.js%22%2C%5B%5B%226068179b7013a296384dee189e23448857544a3ca6%22%2C%22%24%24RSC_SERVER_ACTION_0%22%5D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/(payload)/admin/[[...segments]]/page": "rsc"
+      }
+    },
+    "6068179b7013a296384dee189e23448857544a3ca6": {
+      "workers": {
+        "app/(payload)/admin/[[...segments]]/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fwavefunction%2Fyellowdog%2Fsrc%2Fapp%2F(payload)%2Flayout.tsx%22%2C%5B%5B%2240e90876c469dc0cf244776714e0d9bb0cfce22672%22%2C%22%24%24RSC_SERVER_ACTION_0%22%5D%5D%5D%2C%5B%22%2FUsers%2Fwavefunction%2Fyellowdog%2Fnode_modules%2F%40payloadcms%2Fnext%2Fdist%2Flayouts%2FRoot%2Findex.js%22%2C%5B%5B%226068179b7013a296384dee189e23448857544a3ca6%22%2C%22%24%24RSC_SERVER_ACTION_0%22%5D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/(payload)/admin/[[...segments]]/page": "rsc"
+      }
+    }
+  },
+  "edge": {},
+  "encryptionKey": "s2oUy8TjgQ7A0UVYh14RfSEfUZ18CZ1unN690ktiH+o="
+}
