@@ -1,12 +1,11 @@
 import { getCachedGlobal } from '@/utilities/getGlobals'
 import Link from 'next/link'
-import React from 'react'
 
 import type { Footer } from '@/payload-types'
 
-import { ThemeSelector } from '@/providers/Theme/ThemeSelector'
 import { CMSLink } from '@/components/Link'
-import { Logo } from '@/components/Logo/Logo'
+import Logo from '@/components/Logo/Logo'
+import ThemeToggle from '@/components/ThemeToggle'
 
 export async function Footer() {
   const footerData: Footer = await getCachedGlobal('footer', 1)()
@@ -21,7 +20,7 @@ export async function Footer() {
         </Link>
 
         <div className="flex flex-col-reverse items-start md:flex-row gap-4 md:items-center">
-          <ThemeSelector />
+          <ThemeToggle />
           <nav className="flex flex-col md:flex-row gap-4">
             {navItems.map(({ link }, i) => {
               return <CMSLink className="text-white" key={i} {...link} />

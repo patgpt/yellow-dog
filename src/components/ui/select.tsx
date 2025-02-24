@@ -47,7 +47,7 @@ const SelectScrollDownButton: React.FC<
   >
 > = ({ className, ref, ...props }) => (
   <SelectPrimitive.ScrollDownButton
-    className={cn('flex cursor-default items-center justify-center py-1', className)}
+    className={cn('flex cursor-auto items-center justify-center py-1', className)}
     ref={ref}
     {...props}
   >

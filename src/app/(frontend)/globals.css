@@ -1,15 +1,200 @@
 @import 'tailwindcss';
+@plugin 'tailwindcss-animate';
+@plugin '@tailwindcss/typography';
+@source "@/app/**/*.{js,ts,vue}";
+@theme {
+  /***************************  
+    Light Theme
+  ***************************/
+  --color-primary: oklch(60% 0.25 270); /* Cyberpunk purple: vibrant, mid-light */
+  --color-accent: oklch(80% 0.2 90); /* Bright yellow: warm, complementary */
+  /* --color-foreground: oklch(40% 0.02 0);  Charcoal gray (~#666) */
+  /* --color-background: oklch(95% 0.01 60);          Eggshell off-white, grayish tint */
+  /* --color-card: oklch(92% 0.01 60);                Slightly darker eggshell */
+  /* --color-card-foreground: oklch(40% 0.02 0);      Same as foreground */
+  /* --color-popover: oklch(95% 0.01 60);             Matches background */
+  /* --color-popover-foreground: oklch(40% 0.02 0);   Matches foreground */
+  /* --color-primary: oklch(60% 0.25 270);           Same as primary-color */
+  /* --color-primary-foreground: oklch(95% 0.01 60);  Off-white for contrast */
+  /* --color-secondary: oklch(85% 0.05 260);          Muted purple, analogous */
+  /* --color-secondary-foreground: oklch(40% 0.02 0); Charcoal */
+  /* --color-muted: oklch(85% 0.02 60);               Pale grayish eggshell */
+  /* --color-muted-foreground: oklch(50% 0.03 0);     Slightly lighter gray */
+  /* --color-accent: oklch(80% 0.2 90);              Same as accent-color */
+  /* --color-accent-foreground: oklch(40% 0.02 0);    Charcoal */
+  /* --color-destructive: oklch(50% 0.25 0);          Neon red for alerts */
+  /* --color-destructive-foreground: oklch(95% 0.01 60); Off-white */
+  /* --color-border: oklch(75% 0.02 60);              Light gray border */
+  /* --color-input: oklch(88% 0.02 60);               Slightly darker eggshell */
+  /* --color-ring: oklch(60% 0.25 270);               Matches primary */
+  /* --color-radius: 0.2rem;                          Unchanged */
+  /* --color-success: oklch(70% 0.15 160);            Cyberpunk teal-green */
+  /* --warning: oklch(75% 0.2 90);              Slightly muted yellow */
+  /* --error: oklch(60% 0.25 0);                /* Bright red, aligned with destructive */
 
-@config '../../../tailwind.config.mjs';
+  /* Custom colors from your config */
+  /* --color-accent: hsl(var(--accent)); */
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-background: hsl(var(--background));
+  --color-border: hsla(var(--border));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-foreground: hsl(var(--foreground));
+  --color-input: hsl(var(--input));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  /* --color-primary: hsl(var(--primary)); */
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-ring: hsl(var(--ring));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-success: hsl(var(--success));
+  --color-error: hsl(var(--error));
+  --color-warning: hsl(var(--warning));
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
+  /* Container breakpoints */
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 86rem;
 
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
+  /* Border radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* Fonts */
+  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-geist-sans);
+
+  /* Animation keyframes */
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  /* Animation definitions */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+[data-theme='dark'] {
+  --color-foreground: var(--color-foreground);
+  --color-background: var(--color-background);
+  --color-card: var(--color-background);
+  --color-card-foreground: var(--color-foreground);
+  --color-popover: var(--color-background);
+  --color-popover-foreground: var(--color-foreground);
+  --color-primary: var(--color-background);
+  --color-primary-foreground: var(--color-foreground);
+  --color-secondary: var(--color-background);
+  --color-secondary-foreground: var(--color-foreground);
+  --color-muted: var(--color-background);
+  --color-muted-foreground: var(--color-foreground);
+  --color-accent: var(--color-background);
+  --color-accent-foreground: var(--color-foreground);
+  --color-destructive: var(--color-background);
+  --color-destructive-foreground: var(--color-foreground);
+  --color-border: var(--color-background);
+  --color-input: var(--color-background);
+  --color-ring: var(--color-background);
+  --color-success: var(--color-background);
+  --color-warning: var(--color-background);
+  --color-error: var(--color-background);
+}
+
+/* Dark mode variant */
+@custom-variant dark (&:where(.dark, .dark *));
+/* shadcn/ui */
+:root {
+  /* Light Theme */
+  --background: 60 2% 95%; /* Eggshell off-white, grayish tint */
+  --foreground: 0 5% 40%; /* Charcoal (~#666) */
+
+  --card: 60 2% 92%; /* Slightly darker eggshell */
+  --card-foreground: 0 5% 40%; /* Matches foreground */
+
+  --popover: 60 2% 95%; /* Matches background */
+  --popover-foreground: 0 5% 40%; /* Matches foreground */
+
+  --primary: 270 70% 60%; /* Cyberpunk purple */
+  --primary-foreground: 60 2% 95%; /* Off-white for contrast */
+
+  --secondary: 260 20% 85%; /* Muted purple, analogous */
+  --secondary-foreground: 0 5% 40%; /* Charcoal */
+
+  --muted: 60 5% 85%; /* Pale grayish eggshell */
+  --muted-foreground: 0 5% 50%; /* Lighter gray */
+
+  --accent: 90 60% 80%; /* Bright yellow */
+  --accent-foreground: 0 5% 40%; /* Charcoal */
+
+  --destructive: 0 80% 50%; /* Neon red */
+  --destructive-foreground: 60 2% 95%; /* Off-white */
+
+  --border: 60 5% 75%; /* Light gray */
+  --input: 60 5% 88%; /* Slightly darker eggshell */
+  --ring: 270 70% 60%; /* Matches primary */
+
+  --radius: 0.2rem; /* Unchanged */
+
+  --success: 160 50% 70%; /* Cyberpunk teal-green */
+  --warning: 90 60% 75%; /* Muted yellow */
+  --error: 0 80% 60%; /* Bright red */
+}
+
+[data-theme='dark'] {
+  /* Dark Theme */
+  --background: 0 5% 40%; /* Charcoal (~#666) */
+  --foreground: 60 2% 95%; /* Eggshell off-white, grayish */
+
+  --card: 0 5% 35%; /* Darker charcoal */
+  --card-foreground: 60 2% 95%; /* Off-white */
+
+  --popover: 0 5% 40%; /* Matches background */
+  --popover-foreground: 60 2% 95%; /* Off-white */
+
+  --primary: 270 70% 70%; /* Brighter cyberpunk purple */
+  --primary-foreground: 0 5% 40%; /* Charcoal for contrast */
+
+  --secondary: 260 20% 50%; /* Darker muted purple */
+  --secondary-foreground: 60 2% 95%; /* Off-white */
+
+  --muted: 0 5% 50%; /* Medium gray */
+  --muted-foreground: 0 5% 70%; /* Lighter gray */
+
+  --accent: 90 60% 85%; /* Brighter yellow */
+  --accent-foreground: 0 5% 40%; /* Charcoal */
+
+  --destructive: 0 80% 50%; /* Same neon red */
+  --destructive-foreground: 60 2% 95%; /* Off-white */
+
+  --border: 0 5% 50%; /* Medium gray */
+  --input: 0 5% 45%; /* Slightly lighter charcoal */
+  --ring: 270 70% 70%; /* Matches primary */
+
+  --success: 160 50% 60%; /* Darker cyberpunk teal */
+  --warning: 90 60% 65%; /* Darker yellow */
+  --error: 0 80% 50%; /* Same red */
+}
 @layer base {
   *,
   ::after,
@@ -18,9 +203,10 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
-}
 
-@layer base {
+  body {
+    @apply bg-background text-foreground min-h-[100vh] flex flex-col w-full;
+  }
   h1,
   h2,
   h3,
@@ -30,85 +216,67 @@
     font-size: unset;
     font-weight: unset;
   }
-
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 240 5% 96%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 240 6% 80%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.2rem;
-
-    --success: 196 52% 74%;
-    --warning: 34 89% 85%;
-    --error: 10 100% 86%;
+  /* Container styles */
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--spacing-4); /* 1rem default */
+    padding-right: var(--spacing-4);
+    @media (min-width: 48rem) {
+      /* md */
+      padding-left: var(--spacing-8); /* 2rem */
+      padding-right: var(--spacing-8);
+    }
+    @media (min-width: 80rem) {
+      /* 2xl */
+      padding-left: var(--spacing-8); /* 2rem */
+      padding-right: var(--spacing-8);
+    }
+  }
+  .prose {
+    color: var(--color-foreground);
+  }
+  .prose-lg {
+    max-width: var(--breakpoint-5xl);
+  }
+  /* Typography base styles */
+  h1 {
+    color: var(--color-foreground);
+    font-weight: normal;
+    margin-bottom: var(--spacing-1); /* 0.25rem */
   }
 
-  [data-theme='dark'] {
-    --background: 0 0% 0%;
-    --foreground: 210 40% 98%;
+  /* Default typography */
+  [class~='prose'] {
+    --tw-prose-body: var(--colo);
+    --tw-prose-headings: var(--colo);
+  }
 
-    --card: 0 0% 4%;
-    --card-foreground: 210 40% 98%;
+  /* Base breakpoint typography */
+  @media (min-width: 0) {
+    h1 {
+      font-size: 2.5rem;
+    }
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+  }
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 0, 0%, 15%, 0.8;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-
-    --success: 196 100% 14%;
-    --warning: 34 51% 25%;
-    --error: 10 39% 43%;
+  /* Md breakpoint typography */
+  @media (min-width: 48rem) {
+    h1 {
+      font-size: 3.5rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+    }
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground min-h-[100vh] flex flex-col;
-  }
+html[data-theme='dark'],
+html[data-theme='light'] {
+  opacity: initial;
 }
 
 html {

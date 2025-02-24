@@ -1,18 +1,13 @@
 'use client'
-
 import type { PayloadAdminBarProps, PayloadMeUser } from 'payload-admin-bar'
+import './../../app/(frontend)/globals.css'
 
 import { cn } from '@/utilities/ui'
-import { useSelectedLayoutSegments } from 'next/navigation'
+import { useRouter, useSelectedLayoutSegments } from 'next/navigation'
 import { PayloadAdminBar } from 'payload-admin-bar'
 import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
-
-import './index.scss'
 
 import { getClientSideURL } from '@/utilities/getURL'
-
-const baseClass = 'admin-bar'
 
 const collectionLabels = {
   pages: {
@@ -29,7 +24,7 @@ const collectionLabels = {
   },
 }
 
-const Title: React.FC = () => <span>Dashboard</span>
+const Title: React.FC = () => <span className="text-foreground">Dashboard</span>
 
 export const AdminBar: React.FC<{
   adminBarProps?: PayloadAdminBarProps
@@ -48,19 +43,17 @@ export const AdminBar: React.FC<{
 
   return (
     <div
-      className={cn(baseClass, 'py-2 bg-black text-white', {
-        block: show,
-        hidden: !show,
-      })}
+      className={cn(
+        show ? 'p-4 bg-primary shadow-2xl shadow-accent hidden md:block z-50' : '',
+      )}
     >
       <div className="container">
         <PayloadAdminBar
           {...adminBarProps}
-          className="py-2 text-white"
           classNames={{
-            controls: 'font-medium text-white',
-            logo: 'text-white',
-            user: 'text-white',
+            controls: 'font-medium text-background ',
+            logo: 'shadow-lg text-background p-4 rounded-lg bg-accent hover:text-black',
+            user: 'bg-accent p-2 text-background rounded hover:text-accent-hover',
           }}
           cmsURL={getClientSideURL()}
           collection={collection}
@@ -75,12 +68,6 @@ export const AdminBar: React.FC<{
               router.push('/')
               router.refresh()
             })
-          }}
-          style={{
-            backgroundColor: 'transparent',
-            padding: 0,
-            position: 'relative',
-            zIndex: 'unset',
           }}
         />
       </div>

@@ -8,13 +8,12 @@ import React from 'react'
 import { AdminBar } from '@/components/AdminBar'
 import { Footer } from '@/Footer/Component'
 import { Header } from '@/Header/Component'
-import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
-import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
-import { draftMode } from 'next/headers'
-
-import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
+import { ThemeProvider } from 'next-themes'
+import { draftMode } from 'next/headers'
+import './globals.css'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
@@ -26,8 +25,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
-      <body>
-        <Providers>
+      <body data-theme="dark" className="bg-background text-foreground w-full">
+        <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false}>
           <AdminBar
             adminBarProps={{
               preview: isEnabled,
@@ -37,7 +36,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Header />
           {children}
           <Footer />
-        </Providers>
+        </ThemeProvider>
       </body>
     </html>
   )

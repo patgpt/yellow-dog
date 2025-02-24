@@ -1,0 +1,136 @@
+---
+description: # Tailwind CSS Instructions
+globs: *.css
+alwaysApply: false
+---
+Below is a structured Markdown document (MDC) that breaks down the Tailwind CSS v4 configuration instructions into clear, consumable sections. This structure is designed to be easily parsed by an LLM such as Claude 3.5.
+
+MDC Structure: Tailwind CSS v4 Config
+
+This document outlines the configuration steps using Tailwind CSS v4 conventions. Each section details the purpose, code snippet, and key guidelines.
+
+1. Setup in globals.css
+
+Description:
+Import Tailwind CSS and declare theme variables and keyframes in your global stylesheet.
+
+Code:
+
+@import "tailwindcss";
+@theme {
+  --color-mint-500: oklch(0.72 0.11 178);
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+}
+
+2. Dark Mode
+
+Description:
+Define a custom variant for dark mode and declare dark-specific variables inside a .dark block.
+
+Code:
+
+@custom-variant dark (&:where(.dark, .dark *));
+.dark { --primary-color: oklch(0.72 0.11 178); }
+
+3. Global Styles
+
+Description:
+Apply global styling rules via the base layer. This example sets styles for headings.
+
+Code:
+
+@layer base {
+  h1 { color: var(--primary-color); font-size: var(--text-xl); }
+}
+
+4. Plugins
+
+Description:
+Include Tailwind CSS plugins using the @plugin directive.
+
+Code:
+
+@plugin "@tailwindcss/typography";
+
+5. Custom Utilities
+
+Description:
+Define custom utility classes using a variety of methods—from simple one-liners to nested rules and functional utilities.
+
+Code:
+
+@utility content-auto { content-visibility: auto; }
+@utility scrollbar-hidden { &::-webkit-scrollbar { display: none; } }
+@theme { --tab-size-4: 4; }
+@utility tab-* { tab-size: --value(--tab-size-*); }
+
+6. Custom Variants
+
+Description:
+Create custom variants with the @variant directive. Variants can be nested to combine states (e.g., dark and hover).
+
+Code:
+
+.my-element {
+  background: white;
+  @variant dark { @variant hover { background: black; } }
+}
+
+7. Theme Variables
+
+Description:
+Declare theme variables (namespaced by type such as --color-* or --breakpoint-*) which automatically generate utility classes (e.g., bg-mint-500) and variant classes (e.g., 3xl:).
+
+Code:
+
+@theme { --breakpoint-3xl: 120rem; --font-sans: "Arial"; }
+
+8. Directives
+
+Description:
+Use inline directives like @apply for composing utility classes and custom functions (such as --alpha() and --spacing()) for dynamic styling.
+
+Code:
+
+.btn { @apply rounded px-4 py-2; }
+.box { color: --alpha(var(--color-mint-500) / 50%); margin: --spacing(4); }
+
+9. Components
+
+Description:
+Define reusable component styles within the components layer.
+
+Code:
+
+@layer components {
+  .card { background-color: var(--color-white); border-radius: var(--radius-md); padding: var(--spacing-6); }
+}
+
+Guidelines
+
+DO
+	•	Theme Variables Only: Use @theme exclusively for declaring variables and keyframes.
+Example:
+
+@theme { --color-blue-500: #1e90ff; }
+
+
+	•	ARIA Variants: Utilize ARIA variants (e.g., aria-checked:) as needed.
+	•	Dark Mode Variables: Place dark mode variables within the .dark selector.
+Example:
+
+.dark { --bg-color: #333; }
+
+
+
+DON’T
+	•	No Styles in @theme: Do not include CSS rules (e.g., styling elements) within @theme.
+Bad Example:
+
+@theme { h1 { color: red; } }
+
+
+	•	No JS Configs: Avoid including JavaScript configurations (like safelist settings) in the v4 CSS.
+	•	No v3 Syntax: Do not use outdated v3 syntax (e.g., darkMode: 'class').
+
+This MDC structure organizes the Tailwind CSS v4 configuration into clearly defined steps and guidelines, making it easier for an LLM like Claude 3.5 to parse and understand.

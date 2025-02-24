@@ -1,22 +1,22 @@
 // storage-adapter-import-placeholder
 // import { postgresAdapter } from '@payloadcms/db-postgres'
-import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres';
+import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres'
 
-import path from 'path';
-import { buildConfig, PayloadRequest } from 'payload';
-import sharp from 'sharp'; // sharp-import
-import { fileURLToPath } from 'url';
+import path from 'path'
+import { buildConfig, PayloadRequest } from 'payload'
+import sharp from 'sharp' // sharp-import
+import { fileURLToPath } from 'url'
 
-import { defaultLexical } from '@/fields/defaultLexical';
-import { Categories } from './collections/Categories';
-import { Media } from './collections/Media';
-import { Pages } from './collections/Pages';
-import { Posts } from './collections/Posts';
-import { Users } from './collections/Users';
-import { Footer } from './Footer/config';
-import { Header } from './Header/config';
-import { plugins } from './plugins';
-import { getServerSideURL } from './utilities/getURL';
+import { defaultLexical } from '@/fields/defaultLexical'
+import { Categories } from './collections/Categories'
+import { Media } from './collections/Media'
+import { Pages } from './collections/Pages'
+import { Posts } from './collections/Posts'
+import { Users } from './collections/Users'
+import { Footer } from './Footer/config'
+import { Header } from './Header/config'
+import { plugins } from './plugins'
+import { getServerSideURL } from './utilities/getURL'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -24,6 +24,11 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     components: {
+      views: {},
+      graphics: {
+        Logo: '@/components/Logo/Logo',
+        Icon: '@/components/Logo/Logo',
+      },
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
       beforeLogin: ['@/components/BeforeLogin'],
@@ -32,6 +37,7 @@ export default buildConfig({
       beforeDashboard: ['@/components/BeforeDashboard'],
     },
     importMap: {
+      autoGenerate: true,
       baseDir: path.resolve(dirname),
     },
     user: Users.slug,
@@ -60,13 +66,13 @@ export default buildConfig({
   },
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
-    // Automatically uses proces.env.POSTGRES_URL if no options are provided.
+  // Automatically uses proces.env.POSTGRES_URL if no options are provided.
   db: vercelPostgresAdapter({
     pool: {
       connectionString: process.env.POSTGRES_URL_NON_POOLING,
       ssl: {
-        rejectUnauthorized: false
-      }
+        rejectUnauthorized: false,
+      },
     },
     migrationDir: path.resolve(dirname, './migrations'),
     forceUseVercelPostgres: true,
